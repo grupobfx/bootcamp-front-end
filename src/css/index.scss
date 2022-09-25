@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Roboto');
+
+// Variable overrides first
+$primary: #FF3D38;
+$enable-shadows: true;
+
+$display-font-family: 'Roboto', 'Lato', sans-serif;
+
+// Then import Bootstrap
+@import "./node_modules/bootstrap/scss/bootstrap";
+@import "loader";
+@import "menu";
+
+body {
+  background-color: #f2edf3;
+}
+#boxLoader {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height: 50px;
+  align-items: center;
+}

@@ -1,0 +1,35 @@
+{
+  "name": "backoffice.upnify.com",
+  "version": "1.0.0",
+  "description": "Admin de gastos de entradas y salidas ",
+  "main": "index.js",
+  "scripts": {
+    "dev": "clear && code . && gulp default",
+    "web": "clear && cd web && http-server --cors=[\"Access-Control-Allow-Origin\"] ",
+    "dist": "clear && cd dist && http-server --cors=[\"Access-Control-Allow-Origin\"] ",
+    "build": "gulp production"
+  },
+  "author": "SalesUp! Ninja Team",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.27.1",
+    "@babel/core": "^7.14.3",
+    "@babel/plugin-transform-runtime": "^7.14.3",
+    "@babel/preset-env": "^7.14.2",
+    "babelify": "^10.0.0",
+    "del": "^6.0.0",
+    "gulp": "^4.0.2",
+    "gulp-bro": "^2.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^4.1.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2",
+    "gulplog": "^1.0.0",
+    "json-server": "^0.16.3"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.14.0",
+    "@fortawesome/fontawesome-free": "^6.2.0",
+    "bootstrap": "^5.2.1"
+  }
+}
