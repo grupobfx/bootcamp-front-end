@@ -47,7 +47,6 @@ function toggleFullScreen() {
 };
 
 const init = () => {
-  console.log('init menu');
   subNivelOcultos();
   btnMenu();
   btnMenu2();

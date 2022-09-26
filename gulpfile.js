@@ -11,7 +11,7 @@ const browsersync = require("browser-sync");
 
 const projectFiles = {
   css: ["./src/css/*.css"],
-  img: ["./src/img/*.png", "./src/img/*.jpeg"],
+  img: ["./src/img/*.png", "./src/img/*.jpeg", "./src/img/*.svg"],
   html: ['./src/html/*.html'],
   json: ['./src/js/*.json'],
   assets: ['./src/assets/*.*'],
@@ -69,7 +69,12 @@ const watchProject = () => {
   gulp.watch('./src/html/*.html', copyFiles);
   gulp.watch('./src/assets/*.*', copyFiles);
   gulp.watch("./src/css/*.scss", cssCompile);
-  gulp.watch(["./src/js/app.js", "./src/js/utils.js", "./src/js/settings.js", "./src/js/ui.js", "./src/js/menu.js"], jsClientDev);
+  gulp.watch([
+    "./src/js/app.js", "./src/js/utils.js",
+    "./src/js/settings.js", "./src/js/ui.js",
+    "./src/js/menu.js", "./src/js/router.js",
+    "./src/js/inicio.js"
+  ], jsClientDev);
 };
 
 

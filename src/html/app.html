@@ -1,0 +1,79 @@
+<nav class="navbar navbar-expand-lg bg-light p-0">
+  <div class="container-fluid p-0">
+    <button class="navbar-toggler ms-2" type="button" id="menu-toggle">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    <a class="navbar-brand fixed-brand ttext-center" href="#">
+      <img src="http://localhost:3300/img/Upnify-logo.png" width="100" height="30" />
+    </a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <button class="btn btn-light btn-sm nav-link" type="button" id="menu-toggle-2">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </li>
+        <li class="nav-item d-none">
+          <form class="nav-link d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+              <input type="text" class="form-control form-control-sm bg-light border-0 small"
+                placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-primary btn-sm" type="button">
+                  <i class="fas fa-search fa-sm"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </li>
+        <li class="nav-item d-none">
+          <a class="nav-link" aria-current="page" href="/#">Home</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto me-2">
+
+        <li class="topbar-divider d-none d-sm-block"></li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            Jonh Doe
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+<div id="wrapper" class="">
+  <!-- Sidebar -->
+  <div id="sidebar-wrapper" class="bg-light">
+    <ul class="sidebar-nav nav-pills list-group" id="menu">
+      <li class="list-group-item p-0 bg-transparent border-0">
+        <a href="/#/inicio" data-navigo>
+          <span class="me-2">
+            <i class="fa-solid  fa-lg fa-fw fa-home"></i>
+          </span>
+          <span class="">Inicio</span>
+        </a>
+      </li>
+      <li class="list-group-item p-0  bg-transparent border-0">
+        <a href="/#/salir" data-navigo>
+          <span class="me-2">
+            <i class="fa-solid  fa-lg fa-fw fa-right-from-bracket"></i>
+          </span>
+          <span class="">Cerrar sesión</span>
+        </a>
+      </li>
+    </ul>
+
+  </div>
+  <!-- /#sidebar-wrapper -->
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12" id="app-container"></div>
+      </div>
+    </div>
+  </div>
+  <!-- /#page-content-wrapper -->
+</div>

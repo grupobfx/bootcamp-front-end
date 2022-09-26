@@ -81,11 +81,25 @@ const replaceParams = (url, data) => {
   });
 };
 
+const getFormValues = (form) => {
+  const $form = document.querySelector(form);
+  const values = { };
+
+  [...$form.elements].forEach((el) => {
+    if (el.name) {
+      values[el.name] = el.value
+    }
+  });
+
+  return values;
+};
+
 export default {
   animateCSS,
   doHttp,
   getKeys,
   queryStrToJSON,
   replaceParams,
+  getFormValues,
 };
  

@@ -16,6 +16,8 @@ const getServerWidget = () => {
 
 const recursos = {
   cssInicial: `${getServerWidget()}/css/index.css`,
+  login: `${getServerWidget()}/login.html`,
+  app: `${getServerWidget()}/app.html`,
 };
 
 const api = {
