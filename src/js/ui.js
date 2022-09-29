@@ -70,7 +70,36 @@ const buildTableBody = (opts) => {
   </tbody>`;
 };
 
+const loader = () => {
+  return `
+  <div id="boxLoader">
+    <span class="loader">Cargand</span>
+  </div>
+  `;
+}
+
+const pageContent = (opts) => {
+  const { title, body = '', load = false } = opts;
+  const htmlLoad = load ? loader() : '';
+  const htmlContent = `
+    <div class="d-sm-flex align-items-center justify-content-between mb-4 border-bottom border-2 border-secondary pb-1">
+      <h3 class="h3 mb-0 text-gray-800">${title}</h3>
+    </div>
+
+    <div class="card">
+      <div class="card-body" id="card-body">${body}${htmlLoad}</div>
+    </div>
+  `;
+  const $container = document.querySelector('#app-container');
+  $container.innerHTML = htmlContent;
+  const $cardBody = $container.querySelector('#card-body');
+
+  return { htmlContent, $container, $cardBody };
+};
+
 export default {
   doOptions,
   buildTable,
+  pageContent,
+  loader,
 };

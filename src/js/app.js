@@ -1,4 +1,5 @@
 import Navigo from "navigo";
+// import Chart from 'chart.js/auto';
 
 import utils from "./utils";
 import settings from "./settings";
@@ -6,6 +7,7 @@ import menu from "./menu";
 import storage from "./storage";
 
 import Inicio from './inicio';
+import ui from "./ui";
 
 class Upnify {
   constructor() {
@@ -15,14 +17,6 @@ class Upnify {
   tkIntegracion = 'P02DD9503AB-F0D9-4C00-AD73-B484D9EB658E';
   tkSesion = null;
   $container = null;
-
-  htmlLoader = () => {
-    return `
-    <div id="boxLoader">
-      <span class="loader">Cargand</span>
-    </div>
-    `;
-  };
 
   login = async () => {
     const html = await utils.doHttp({ url: settings.recursos.login, json: false });
@@ -55,11 +49,17 @@ class Upnify {
   baseHtml = (html) => {
     const $container = document.querySelector("#app");
     this.$container = $container;
-    $container.innerHTML = html || this.htmlLoader();
+    $container.innerHTML = html || ui.loader();
   };
 
   initLoaded = () => {
     // this.$container.innerHTML = 'ok';
+  };
+
+  logout = async () => {
+    storage.clear();
+    this.router.navigate('/');
+    await this.login();
   };
 
   router;
@@ -67,7 +67,7 @@ class Upnify {
     '/': () => {},
     '/login': this.login,
     '/inicio': Inicio.init,
-    '/salir': Inicio.init,
+    '/salir': this.logout,
   };
 
   setRoutes = () => {
