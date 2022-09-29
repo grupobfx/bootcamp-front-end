@@ -3,7 +3,7 @@ import ui from "./ui";
 const Inicio = function () {
   this.init = () => {
     console.log('inicio');
-    const { $container, $cardBody } = ui.pageContent({ title: 'inicio', load: true });
+    const { $container, $cardBody } = ui.pageContent({ title: 'Inicio', load: true });
 
     setTimeout( () => { $cardBody.innerHTML = 'Listo'; }, 5000 );
   };

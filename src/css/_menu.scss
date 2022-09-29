@@ -167,3 +167,17 @@
      width: auto;
   }
 }
+
+.navbar{
+  .navbar-brand{
+    .image-logo{
+      max-width: 120px;
+      max-height: 40px;
+    }
+  }
+  .navbar-nav{
+    .nav-link{
+      color: $text-color;
+    }
+  }
+}

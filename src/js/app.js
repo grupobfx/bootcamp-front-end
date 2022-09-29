@@ -71,9 +71,12 @@ class Upnify {
   };
 
   setRoutes = () => {
-    console.log('setRoutes', this.routes);
+    // console.log('setRoutes', this.routes);
     this.router = new Navigo('/', { hash: true });
     this.router.on (this.routes);
+    this.router.notFound(() => {
+      ui.pageContent({ title: '404', body: ui.pageNotFound() })
+    });
     this.router.resolve();
   };
 
