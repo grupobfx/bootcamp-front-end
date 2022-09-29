@@ -16,36 +16,37 @@ const animateCSS = (element, animation, prefix = "ctcUp_animate__") =>
     node.addEventListener("animationend", handleAnimationEnd, { once: true });
   });
 
-const doHttp = (opts) => {
-  const { url, paylaod = {}, json = true, method = 'GET', headers = {} } = opts;
-  return new Promise(function (resolve, reject) {
-    var req = new XMLHttpRequest();
+const doHttp = async (opts) => {
+  const { url, payload, json = true, method = "GET", headers = {} } = opts;
+  let queryString = "";
+  let options = {};
 
-    const queryString = method === 'GET' ? '?'+objectToQueryString(paylaod) : ''; 
-
-    req.open(method, url+queryString, true);
-
-    Object.keys(headers).forEach((key) => {
-      req.setRequestHeader(key, headers[key]);
-    });
-
-    req.onreadystatechange = function () {
-      if (req.readyState == 4) {
-        if (req.status == 200) {
-          const res = json
-            ? JSON.parse(req.responseText)
-            : req.responseText;
-          resolve(res); 
-        } else {
-          reject(req);
-        }
-      }
+  if (method !== "GET") {
+    options = {
+      method,
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify(payload || {}),
     };
-    req.onerror = function () {
-      reject(Error("network error"));
-    };
-    req.send(paylaod);
+  } else if (payload && method === "GET") {
+    queryString = "?" + objectToQueryString(payload);
+  }
+
+  Object.keys(headers).forEach((key) => {
+    options.headers[key] = headers[key];
   });
+
+  const response = await fetch(url + queryString, options);
+  let res;
+  if (response.ok) {
+    if (json) {
+      res = await response.json();
+    } else {
+      res = await response.text();
+    }
+  }
+  return res;
 };
 
 const getKeys = (data) => (data && typeof data === 'object') ? Object.keys(data) : [];

@@ -4,7 +4,8 @@ import utils from "./utils";
 import settings from "./settings";
 import menu from "./menu";
 import storage from "./storage";
-import setRoutes from './router';
+
+import Inicio from './inicio';
 
 class Upnify {
   constructor() {
@@ -14,7 +15,6 @@ class Upnify {
   tkIntegracion = 'P02DD9503AB-F0D9-4C00-AD73-B484D9EB658E';
   tkSesion = null;
   $container = null;
-  routes = null;
 
   htmlLoader = () => {
     return `
@@ -34,7 +34,6 @@ class Upnify {
 
   doLogin = async () => {
     const values = utils.getFormValues('#frm-login');
-    console.log('values', values);
     const { correo, contrasenia } = values;
 
     if (!correo && !contrasenia) {
@@ -43,13 +42,14 @@ class Upnify {
 
     storage.set('tkSesion', 'P02NjExRDI5MDItNkQxOC00REZGLUJFMTItRTMyNDVBMzUwMEQ0');
     await this.app();
-    this.routes.navigate('/#/inicio');
+    this.router.navigate('/inicio');
   };
 
   app = async () => {
     const html = await utils.doHttp({ url: settings.recursos.app, json: false });
     this.baseHtml(html);
     menu.init();
+    this.setRoutes();
   }
 
   baseHtml = (html) => {
@@ -62,6 +62,21 @@ class Upnify {
     // this.$container.innerHTML = 'ok';
   };
 
+  router;
+  routes = {
+    '/': () => {},
+    '/login': this.login,
+    '/inicio': Inicio.init,
+    '/salir': Inicio.init,
+  };
+
+  setRoutes = () => {
+    console.log('setRoutes', this.routes);
+    this.router = new Navigo('/', { hash: true });
+    this.router.on (this.routes);
+    this.router.resolve();
+  };
+
   init = async () => {
     this.tkSesion = storage.get('tkSesion');
     this.baseHtml();
@@ -70,7 +85,6 @@ class Upnify {
     } else {
       await this.login();
     }
-    this.routes = setRoutes();
   };
 }
 

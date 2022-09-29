@@ -5,6 +5,7 @@
 }
 
 #wrapper {
+  padding-top: 65px;
   padding-left: 0;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
@@ -64,6 +65,7 @@
   width: 250px;
   margin: 0;
   padding: 0;
+  padding-top: 1rem !important;
   list-style: none;
   margin-top: 2px;
 
