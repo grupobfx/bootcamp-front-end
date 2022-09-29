@@ -5,7 +5,6 @@
 }
 
 #wrapper {
-  padding-top: 65px;
   padding-left: 0;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
@@ -32,6 +31,10 @@
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
+
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
 #wrapper.toggled #sidebar-wrapper {
@@ -40,7 +43,7 @@
 
 #page-content-wrapper {
   position: absolute;
-  padding: 15px;
+  padding: 80px 15px 15px 15px;
   width: 100%;
   overflow-x: hidden;
 }
@@ -60,12 +63,12 @@
 /* Sidebar Styles */
 
 .sidebar-nav {
-  position: absolute;
-  top: 0;
+  // position: absolute;
+  // top: 0;
   width: 250px;
   margin: 0;
   padding: 0;
-  padding-top: 1rem !important;
+  padding-top: 65px !important;
   list-style: none;
   margin-top: 2px;
 
@@ -83,14 +86,15 @@
 .sidebar-nav li a {
   display: block;
   text-decoration: none;
-  color: #999999;
+  color: $text-color;
 }
 
 .sidebar-nav li a:hover {
   text-decoration: none;
   color: #fff;
   background: $primary;
-  border-left: $white 2px solid;
+  // border-bottom: $text-color 2px solid;
+  border-right: $text-color 2px solid;
 }
 
 .sidebar-nav li a:active,
@@ -105,7 +109,7 @@
 }
 
 .sidebar-nav > .sidebar-brand a {
-  color: #999999;
+  color: $text-color;
 }
 
 .sidebar-nav > .sidebar-brand a:hover {
@@ -140,7 +144,7 @@
      width: 250px;
   }
   #page-content-wrapper {
-     padding: 20px;
+     padding: 80px 20px 20px 20px;
      position: relative;
      -webkit-transition: all 0.5s ease;
      -moz-transition: all 0.5s ease;

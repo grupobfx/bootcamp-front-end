@@ -2,6 +2,9 @@
 
 // Variable overrides first
 $primary: #FF3D38;
+// $secondary: #081C35;
+
+$text-color: #081C35;
 $enable-shadows: true;
 
 $display-font-family: 'Roboto', 'Lato', sans-serif;
@@ -13,7 +16,9 @@ $display-font-family: 'Roboto', 'Lato', sans-serif;
 
 body {
   background-color: #f2edf3;
+  font-family: $display-font-family;
 }
+
 #boxLoader {
   display: flex;
   justify-content: center;
@@ -22,9 +27,22 @@ body {
   align-items: center;
 }
 
-.navbar-brand{
-  .image-logo{
-    max-width: 120px;
-    max-height: 40px;
+.navbar{
+  .navbar-brand{
+    .image-logo{
+      max-width: 120px;
+      max-height: 40px;
+    }
   }
+  .navbar-nav{
+    .nav-link{
+      color: $text-color;
+    }
+  }
+}
+
+.glass {
+  background-color: #FFFFFF4D;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
 }
