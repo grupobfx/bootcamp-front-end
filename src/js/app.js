@@ -64,7 +64,7 @@ class Upnify {
 
   router;
   routes = {
-    '/': () => {},
+    '/': Inicio.init,
     '/login': this.login,
     '/inicio': Inicio.init,
     '/salir': this.logout,
