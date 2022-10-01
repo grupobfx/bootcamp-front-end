@@ -36,7 +36,6 @@ class Upnify {
 
     storage.set('tkSesion', 'P02NjExRDI5MDItNkQxOC00REZGLUJFMTItRTMyNDVBMzUwMEQ0');
     await this.app();
-    this.router.navigate('/inicio');
   };
 
   app = async () => {
@@ -87,6 +86,7 @@ class Upnify {
       await this.app();
     } else {
       await this.login();
+      history.replaceState({}, '', '/');
     }
   };
 }
