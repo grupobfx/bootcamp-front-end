@@ -1,21 +1,23 @@
-import Navigo from "navigo";
+import Navigo from 'navigo';
 // import Chart from 'chart.js/auto';
 
-import utils from "./utils";
-import settings from "./settings";
-import menu from "./menu";
-import storage from "./storage";
+import utils from './utils';
+import settings from './settings';
+import menu from './menu';
+import storage from './storage';
 
 import Inicio from './inicio';
-import ui from "./ui";
+import ui from './ui';
 
 class Upnify {
   constructor() {
-    window.addEventListener("load", this.init);
+    window.addEventListener('load', this.init);
   }
 
   tkIntegracion = 'P02DD9503AB-F0D9-4C00-AD73-B484D9EB658E';
+
   tkSesion = null;
+
   $container = null;
 
   login = async () => {
@@ -31,7 +33,7 @@ class Upnify {
     const { correo, contrasenia } = values;
 
     if (!correo && !contrasenia) {
-      return false
+      return false;
     }
 
     storage.set('tkSesion', 'P02NjExRDI5MDItNkQxOC00REZGLUJFMTItRTMyNDVBMzUwMEQ0');
@@ -43,10 +45,10 @@ class Upnify {
     this.baseHtml(html);
     menu.init();
     this.setRoutes();
-  }
+  };
 
   baseHtml = (html) => {
-    const $container = document.querySelector("#app");
+    const $container = document.querySelector('#app');
     this.$container = $container;
     $container.innerHTML = html || ui.loader();
   };
@@ -62,6 +64,7 @@ class Upnify {
   };
 
   router;
+
   routes = {
     '/': Inicio.init,
     '/login': this.login,
@@ -72,9 +75,9 @@ class Upnify {
   setRoutes = () => {
     // console.log('setRoutes', this.routes);
     this.router = new Navigo('/', { hash: true });
-    this.router.on (this.routes);
+    this.router.on(this.routes);
     this.router.notFound(() => {
-      ui.pageContent({ title: '404', body: ui.pageNotFound() })
+      ui.pageContent({ title: '404', body: ui.pageNotFound() });
     });
     this.router.resolve();
   };

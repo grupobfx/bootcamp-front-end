@@ -1,6 +1,6 @@
 const get = (key) => {
   const value = localStorage.getItem(key);
-  if (!value) { return '' }
+  if (!value) { return ''; }
   try {
     return JSON.parse(value);
   } catch (error) {
@@ -9,13 +9,13 @@ const get = (key) => {
 };
 
 const set = (key, value) => {
-  value = value || '';
+  let v = value || '';
   try {
-    value = JSON.stringify(value);
+    v = JSON.stringify(v);
   } catch (error) {
-    value = value.toString();
+    v = v.toString();
   }
-  localStorage.setItem(key, value);
+  localStorage.setItem(key, v);
 };
 
 const del = (key) => {
@@ -26,10 +26,9 @@ const clear = () => {
   localStorage.clear();
 };
 
-
 export default {
   get,
   set,
   del,
   clear,
-}
+};

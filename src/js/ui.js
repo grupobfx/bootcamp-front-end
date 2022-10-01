@@ -1,21 +1,18 @@
-
 const doOptions = (opts) => {
   const { data, value, option } = opts;
   if (!data) {
-    return "";
+    return '';
   }
 
   return data
-    .map((d) => {
-      return `<option value="${d[value]}">${d[option]}</option>`;
-    })
-    .join("");
+    .map((d) => `<option value="${d[value]}">${d[option]}</option>`)
+    .join('');
 };
 
 const buildTable = (opts) => {
   const { data } = opts;
   if (!data) {
-    return "";
+    return '';
   }
 
   return `
@@ -31,19 +28,19 @@ const buildTable = (opts) => {
 const buildTableHead = (opts) => {
   const { columns } = opts;
   if (!columns) {
-    return "";
+    return '';
   }
 
   return `
   <thead>
     <tr>
       ${columns
-        .map((column) => {
-          const { css = "", title } = column;
+    .map((column) => {
+      const { css = '', title } = column;
 
-          return `<th class="${css}">${title}</th>`;
-        })
-        .join("")}
+      return `<th class="${css}">${title}</th>`;
+    })
+    .join('')}
     </tr>
   </thead>`;
 };
@@ -51,32 +48,28 @@ const buildTableHead = (opts) => {
 const buildTableBody = (opts) => {
   const { columns, data } = opts;
   if (!columns) {
-    return "";
+    return '';
   }
 
   return `<tbody class="table-group-divider">
-    ${data.map((d) => {
-      return `
+    ${data.map((d) => `
         <tr>${columns
-            .map((column) => {
-              const { css = "", field } = column;
-              const value = d[field];
-              return `<td class="${css}">${value || ""}</td>`;
-            })
-            .join("")}
+    .map((column) => {
+      const { css = '', field } = column;
+      const value = d[field];
+      return `<td class="${css}">${value || ''}</td>`;
+    })
+    .join('')}
         </tr>
-      `;
-    }).join("")}
+      `).join('')}
   </tbody>`;
 };
 
-const loader = () => {
-  return `
+const loader = () => `
   <div id="boxLoader">
     <span class="loader">Cargand</span>
   </div>
   `;
-}
 
 const pageContent = (opts) => {
   const { title, body = '', load = false } = opts;
@@ -97,8 +90,7 @@ const pageContent = (opts) => {
   return { htmlContent, $container, $cardBody };
 };
 
-const pageNotFound = () => {
-  return `
+const pageNotFound = () => `
   <div class="text-center">
     <div class="error mx-auto" data-text="404">404</div>
     <p class="lead text-gray-800 mb-5">Pagina no encontrada</p>
@@ -106,7 +98,6 @@ const pageNotFound = () => {
     <a href="/inicio" data-navigo>Inicio</a>
   </div>
   `;
-};
 
 export default {
   doOptions,

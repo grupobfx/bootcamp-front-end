@@ -3,7 +3,7 @@ const btnMenu = () => {
   $btn.onclick = () => {
     const $wrapper = document.querySelector('#wrapper');
     $wrapper.classList.toggle('toggled');
-  }
+  };
 };
 
 const btnMenu2 = () => {
@@ -12,7 +12,7 @@ const btnMenu2 = () => {
     subNivelOcultos();
     const $wrapper = document.querySelector('#wrapper');
     $wrapper.classList.toggle('toggled-2');
-  }
+  };
 };
 
 const subNivelOcultos = () => {
@@ -33,18 +33,16 @@ function toggleFullScreen() {
     } else if (document.documentElement.msRequestFullscreen) {
       document.documentElement.msRequestFullscreen();
     }
-  } else {
-    if (document.cancelFullScreen) {
-      document.cancelFullScreen();
-    } else if (document.mozCancelFullScreen) {
-      document.mozCancelFullScreen();
-    } else if (document.webkitCancelFullScreen) {
-      document.webkitCancelFullScreen();
-    } else if (document.msExitFullscreen) {
-      document.msExitFullscreen();
-    }
+  } else if (document.cancelFullScreen) {
+    document.cancelFullScreen();
+  } else if (document.mozCancelFullScreen) {
+    document.mozCancelFullScreen();
+  } else if (document.webkitCancelFullScreen) {
+    document.webkitCancelFullScreen();
+  } else if (document.msExitFullscreen) {
+    document.msExitFullscreen();
   }
-};
+}
 
 const init = () => {
   subNivelOcultos();
@@ -54,4 +52,4 @@ const init = () => {
 
 export default {
   init,
-}
+};

@@ -1,14 +1,14 @@
 const cleanString = (str) => {
   if (!str) {
-    return "";
+    return '';
   }
 
   return str
-    .replace(/(\r\n|\n|\r|\t)/gm, " ")
+    .replace(/(\r\n|\n|\r|\t)/gm, ' ')
     .trim()
-    .replace(/\s/g, "");
+    .replace(/\s/g, '');
 };
 
 export default {
   cleanString,
-}
+};

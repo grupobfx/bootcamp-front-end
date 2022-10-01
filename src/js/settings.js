@@ -1,18 +1,15 @@
-import utils from "./utils";
+import utils from './utils';
 
-const serverApi = "https://api.upnify.com";
+const serverApi = 'https://api.upnify.com';
 
 const isLocal = () => {
-  const arrLocalHost = ["localhost", "127.0.0.1"];
+  const arrLocalHost = ['localhost', '127.0.0.1'];
   return arrLocalHost.includes(document.location.hostname);
 };
 
-const getServerWidget = () => {
-  return isLocal()
-    ? "http://localhost:3300"
-    : "https://assets.upnify.com/scripts";
-};
-
+const getServerWidget = () => (isLocal()
+  ? 'http://localhost:3300'
+  : 'https://assets.upnify.com/scripts');
 
 const recursos = {
   cssInicial: `${getServerWidget()}/css/index.css`,
@@ -41,7 +38,7 @@ const widgetInfo = (opts) => {
   }\ntkSesion: ${tkSesion}\nconfig: ${JSON.stringify(
     config,
     null,
-    2
+    2,
   )}\n\n\n`;
   console.info(info);
 };
@@ -51,5 +48,5 @@ export default {
   recursos,
   api,
   resolveUrl,
-  widgetInfo
+  widgetInfo,
 };

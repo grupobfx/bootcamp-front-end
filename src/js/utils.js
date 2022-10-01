@@ -1,4 +1,4 @@
-const animateCSS = (element, animation, prefix = "ctcUp_animate__") =>
+const animateCSS = (element, animation, prefix = 'ctcUp_animate__') =>
   // We create a Promise and return it
   new Promise((resolve, reject) => {
     const animationName = `${prefix}${animation}`;
@@ -10,27 +10,29 @@ const animateCSS = (element, animation, prefix = "ctcUp_animate__") =>
     function handleAnimationEnd(event) {
       event.stopPropagation();
       node.classList.remove(`${prefix}animated`, animationName);
-      resolve("Animation ended");
+      resolve('Animation ended');
     }
 
-    node.addEventListener("animationend", handleAnimationEnd, { once: true });
+    node.addEventListener('animationend', handleAnimationEnd, { once: true });
   });
 
 const doHttp = async (opts) => {
-  const { url, payload, json = true, method = "GET", headers = {} } = opts;
-  let queryString = "";
+  const {
+    url, payload, json = true, method = 'GET', headers = {},
+  } = opts;
+  let queryString = '';
   let options = {};
 
-  if (method !== "GET") {
+  if (method !== 'GET') {
     options = {
       method,
       headers: {
-        "Content-Type": "application/json;charset=utf-8",
+        'Content-Type': 'application/json;charset=utf-8',
       },
       body: JSON.stringify(payload || {}),
     };
-  } else if (payload && method === "GET") {
-    queryString = "?" + objectToQueryString(payload);
+  } else if (payload && method === 'GET') {
+    queryString = `?${objectToQueryString(payload)}`;
   }
 
   Object.keys(headers).forEach((key) => {
@@ -49,28 +51,29 @@ const doHttp = async (opts) => {
   return res;
 };
 
-const getKeys = (data) => (data && typeof data === 'object') ? Object.keys(data) : [];
+const getKeys = (data) => ((data && typeof data === 'object') ? Object.keys(data) : []);
 
 const queryStrToJSON = () => {
-  var pairs = location.search.slice(1).split("&");
+  const pairs = location.search.slice(1).split('&');
 
-  var result = {};
-  pairs.forEach(function (pair) {
-    pair = pair.split("=");
-    result[pair[0]] = decodeURIComponent(pair[1] || "");
+  const result = {};
+  pairs.forEach((pair) => {
+    pair = pair.split('=');
+    result[pair[0]] = decodeURIComponent(pair[1] || '');
   });
 
   return JSON.parse(JSON.stringify(result));
 };
 
 function objectToQueryString(obj) {
-  var str = [];
-  for (var p in obj)
+  const str = [];
+  for (const p in obj) {
     if (obj.hasOwnProperty(p)) {
-      str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+      str.push(`${encodeURIComponent(p)}=${encodeURIComponent(obj[p])}`);
     }
-  return str.join("&");
-};
+  }
+  return str.join('&');
+}
 
 const replaceParams = (url, data) => {
   if (!url) { return ''; }
@@ -88,7 +91,7 @@ const getFormValues = (form) => {
 
   [...$form.elements].forEach((el) => {
     if (el.name) {
-      values[el.name] = el.value
+      values[el.name] = el.value;
     }
   });
 
@@ -103,4 +106,3 @@ export default {
   replaceParams,
   getFormValues,
 };
- 
