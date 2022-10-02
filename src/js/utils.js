@@ -1,20 +1,15 @@
-const animateCSS = (element, animation, prefix = 'ctcUp_animate__') =>
-  // We create a Promise and return it
-  new Promise((resolve, reject) => {
-    const animationName = `${prefix}${animation}`;
-    const node = document.querySelector(element);
+/* eslint-disable no-param-reassign */
 
-    node.classList.add(`${prefix}animated`, animationName);
-
-    // When the animation ends, we clean the classes and resolve the Promise
-    function handleAnimationEnd(event) {
-      event.stopPropagation();
-      node.classList.remove(`${prefix}animated`, animationName);
-      resolve('Animation ended');
+function objectToQueryString(obj) {
+  const str = [];
+  Object.keys(obj).forEach((key) => {
+    if (obj(key)) {
+      str.push(`${encodeURIComponent(key)}=${encodeURIComponent(obj[key])}`);
     }
-
-    node.addEventListener('animationend', handleAnimationEnd, { once: true });
   });
+
+  return str.join('&');
+}
 
 const doHttp = async (opts) => {
   const {
@@ -54,7 +49,7 @@ const doHttp = async (opts) => {
 const getKeys = (data) => ((data && typeof data === 'object') ? Object.keys(data) : []);
 
 const queryStrToJSON = () => {
-  const pairs = location.search.slice(1).split('&');
+  const pairs = window.location.search.slice(1).split('&');
 
   const result = {};
   pairs.forEach((pair) => {
@@ -65,23 +60,13 @@ const queryStrToJSON = () => {
   return JSON.parse(JSON.stringify(result));
 };
 
-function objectToQueryString(obj) {
-  const str = [];
-  for (const p in obj) {
-    if (obj.hasOwnProperty(p)) {
-      str.push(`${encodeURIComponent(p)}=${encodeURIComponent(obj[p])}`);
-    }
-  }
-  return str.join('&');
-}
-
 const replaceParams = (url, data) => {
   if (!url) { return ''; }
   if (!data) { return url; }
 
   return url.replace(/[:][a-zA-Z]*/g, (key) => {
-    key = key.replace(':', '');
-    return data[key] ? data[key] : `:${key}`;
+    const keyReplace = key.replace(':', '');
+    return data[keyReplace] ? data[keyReplace] : `:${keyReplace}`;
   });
 };
 
@@ -99,7 +84,6 @@ const getFormValues = (form) => {
 };
 
 export default {
-  animateCSS,
   doHttp,
   getKeys,
   queryStrToJSON,

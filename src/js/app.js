@@ -1,5 +1,4 @@
 import Navigo from 'navigo';
-// import Chart from 'chart.js/auto';
 
 import utils from './utils';
 import settings from './settings';
@@ -38,6 +37,7 @@ class Upnify {
 
     storage.set('tkSesion', 'P02NjExRDI5MDItNkQxOC00REZGLUJFMTItRTMyNDVBMzUwMEQ0');
     await this.app();
+    return true;
   };
 
   app = async () => {
@@ -53,10 +53,6 @@ class Upnify {
     $container.innerHTML = html || ui.loader();
   };
 
-  initLoaded = () => {
-    // this.$container.innerHTML = 'ok';
-  };
-
   logout = async () => {
     storage.clear();
     this.router.navigate('/');
@@ -64,6 +60,8 @@ class Upnify {
   };
 
   router;
+
+  // inicio = new Inicio();
 
   routes = {
     '/': Inicio.init,
@@ -89,9 +87,10 @@ class Upnify {
       await this.app();
     } else {
       await this.login();
-      history.replaceState({}, '', '/');
+      window.history.replaceState({}, '', '/');
     }
   };
 }
 
+// eslint-disable-next-line no-unused-vars
 const upnify = new Upnify();

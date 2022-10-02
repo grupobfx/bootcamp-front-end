@@ -9,22 +9,6 @@ const doOptions = (opts) => {
     .join('');
 };
 
-const buildTable = (opts) => {
-  const { data } = opts;
-  if (!data) {
-    return '';
-  }
-
-  return `
-  <div class="table-responsive">
-    <table class="table table-striped _table-striped-columns table-hover table-sm">
-      ${buildTableHead(opts)}
-      ${buildTableBody(opts)}
-    </table>
-  </div>
-  `;
-};
-
 const buildTableHead = (opts) => {
   const { columns } = opts;
   if (!columns) {
@@ -63,6 +47,22 @@ const buildTableBody = (opts) => {
         </tr>
       `).join('')}
   </tbody>`;
+};
+
+const buildTable = (opts) => {
+  const { data } = opts;
+  if (!data) {
+    return '';
+  }
+
+  return `
+  <div class="table-responsive">
+    <table class="table table-striped _table-striped-columns table-hover table-sm">
+      ${buildTableHead(opts)}
+      ${buildTableBody(opts)}
+    </table>
+  </div>
+  `;
 };
 
 const loader = () => `

@@ -1,8 +1,7 @@
-/**
- * @jest-environment jsdom
- */
+/* eslint-disable no-undef */
+
+import utilsTest from './utilsTest';
 import ui from '../src/js/ui';
-import utilsTest from "./utilsTest";
 
 test('doOptions', () => {
   const arrTest = [
@@ -22,13 +21,13 @@ test('doOptions', () => {
       data: [
         {
           tkOpcion: 'ABC',
-          opcion: 'Primera'
-        }
+          opcion: 'Primera',
+        },
       ],
       value: 'tkOpcion',
       option: 'opcion',
       html: '<option value="ABC">Primera</option>',
-    }
+    },
   ];
 
   arrTest.forEach((test) => {
@@ -39,7 +38,7 @@ test('doOptions', () => {
 });
 
 test('loader', () => {
-  const html = utilsTest.cleanString('<div id=\"boxLoader\"><span class=\"loader\">Cargand</span></div>');
+  const html = utilsTest.cleanString('<div id="boxLoader"><span class="loader">Cargand</span></div>');
   const resHtml = utilsTest.cleanString(ui.loader());
   expect(resHtml).toBe(html);
 });
