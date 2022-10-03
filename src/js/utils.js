@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-function objectToQueryString(obj) {
+const objectToQueryString = (obj) => {
   const str = [];
   Object.keys(obj).forEach((key) => {
     if (obj(key)) {
@@ -9,41 +9,6 @@ function objectToQueryString(obj) {
   });
 
   return str.join('&');
-}
-
-const doHttp = async (opts) => {
-  const {
-    url, payload, json = true, method = 'GET', headers = {},
-  } = opts;
-  let queryString = '';
-  let options = {};
-
-  if (method !== 'GET') {
-    options = {
-      method,
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify(payload || {}),
-    };
-  } else if (payload && method === 'GET') {
-    queryString = `?${objectToQueryString(payload)}`;
-  }
-
-  Object.keys(headers).forEach((key) => {
-    options.headers[key] = headers[key];
-  });
-
-  const response = await fetch(url + queryString, options);
-  let res;
-  if (response.ok) {
-    if (json) {
-      res = await response.json();
-    } else {
-      res = await response.text();
-    }
-  }
-  return res;
 };
 
 const getKeys = (data) => ((data && typeof data === 'object') ? Object.keys(data) : []);
@@ -84,9 +49,9 @@ const getFormValues = (form) => {
 };
 
 export default {
-  doHttp,
   getKeys,
   queryStrToJSON,
   replaceParams,
+  objectToQueryString,
   getFormValues,
 };

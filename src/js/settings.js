@@ -1,20 +1,15 @@
-import utils from './utils';
-
-const serverApi = 'https://api.upnify.com';
-
 const isLocal = () => {
   const arrLocalHost = ['localhost', '127.0.0.1'];
   return arrLocalHost.includes(document.location.hostname);
 };
 
-const getServerWidget = () => (isLocal()
+const getServerResources = () => (isLocal()
   ? 'http://localhost:3300'
   : 'https://assets.upnify.com/scripts');
 
 const recursos = {
-  cssInicial: `${getServerWidget()}/css/index.css`,
-  login: `${getServerWidget()}/login.html`,
-  app: `${getServerWidget()}/app.html`,
+  login: `${getServerResources()}/login.html`,
+  app: `${getServerResources()}/app.html`,
 };
 
 const api = {
@@ -24,11 +19,6 @@ const api = {
   marcas: '/v4/catalogos/marcas',
   modelos: '/v4/catalogos/modelos',
   productos: '/v4/catalogos/productos',
-};
-
-const resolveUrl = (opts) => {
-  const { url, data } = opts;
-  return serverApi + utils.replaceParams(url, data);
 };
 
 const widgetInfo = (opts) => {
@@ -47,6 +37,5 @@ export default {
   local: isLocal(),
   recursos,
   api,
-  resolveUrl,
   widgetInfo,
 };

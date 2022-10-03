@@ -4,23 +4,22 @@ import utils from './utils';
 import settings from './settings';
 import menu from './menu';
 import storage from './storage';
+import ui from './ui';
+import http from './http';
 
 import Inicio from './inicio';
-import ui from './ui';
 
 class Upnify {
   constructor() {
     window.addEventListener('load', this.init);
   }
 
-  tkIntegracion = 'P02DD9503AB-F0D9-4C00-AD73-B484D9EB658E';
-
   tkSesion = null;
 
   $container = null;
 
   login = async () => {
-    const html = await utils.doHttp({ url: settings.recursos.login, json: false });
+    const html = await http.doHttp({ url: settings.recursos.login, json: false });
     this.baseHtml(html);
 
     const $btnLogin = document.querySelector('#btn-login');
@@ -35,13 +34,13 @@ class Upnify {
       return false;
     }
 
-    storage.set('tkSesion', 'P02NjExRDI5MDItNkQxOC00REZGLUJFMTItRTMyNDVBMzUwMEQ0');
+    // storage.set('tkSesion', 'P02NjExRDI5MDItNkQxOC00REZGLUJFMTItRTMyNDVBMzUwMEQ0');
     await this.app();
     return true;
   };
 
   app = async () => {
-    const html = await utils.doHttp({ url: settings.recursos.app, json: false });
+    const html = await http.doHttp({ url: settings.recursos.app, json: false });
     this.baseHtml(html);
     menu.init();
     this.setRoutes();

@@ -14,7 +14,7 @@ class Inicio {
   getInfo = (opts) => {
     const { $cardBody } = opts;
 
-    $cardBody.innerHTML = '<canvas id="myChart" _height="200"></canvas>';
+    $cardBody.innerHTML = '<canvas class="mh-500" id="myChart" _height="200"></canvas>';
 
     const $chart = document.querySelector('#myChart');
 
