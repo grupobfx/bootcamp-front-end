@@ -12,15 +12,6 @@ const recursos = {
   app: `${getServerResources()}/app.html`,
 };
 
-const api = {
-  sesion: '/integraciones/sesion',
-  integracionContacto: '/v4/integraciones/:tkIntegracion',
-  lineas: '/v4/catalogos/lineas',
-  marcas: '/v4/catalogos/marcas',
-  modelos: '/v4/catalogos/modelos',
-  productos: '/v4/catalogos/productos',
-};
-
 const widgetInfo = (opts) => {
   const { tkIntegracion, tkSesion, config } = opts;
   const info = `\nUpnify Vivienda\n\nlocal: ${isLocal()}\ntkIntegracion: ${
@@ -36,6 +27,5 @@ const widgetInfo = (opts) => {
 export default {
   local: isLocal(),
   recursos,
-  api,
   widgetInfo,
 };
