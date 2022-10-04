@@ -112,6 +112,7 @@ const watchProject = () => {
     './src/js/settings.js', './src/js/ui.js',
     './src/js/menu.js', './src/js/inicio.js',
     './src/js/http.js', './src/js/api.js',
+    './src/js/pages/*.js',
   ], jsClientDev);
 };
 

@@ -9,6 +9,20 @@ const doOptions = (opts) => {
     .join('');
 };
 
+const emptyTable = (columns) => {
+  const nColumns = columns.length;
+  return `
+  <tbody class="table-group-divider">
+    <tr>
+      <td class="p-0" colspan="${nColumns}">
+        <div class="alert alert-info m-0 p-2 text-center fs-6" role="alert">
+          Sin información
+        </div>
+      </td>
+    </tr>
+  </tbody>`;
+};
+
 const buildTableHead = (opts) => {
   const { columns } = opts;
   if (!columns) {
@@ -30,17 +44,18 @@ const buildTableHead = (opts) => {
 };
 
 const buildTableBody = (opts) => {
-  const { columns, data } = opts;
-  if (!columns) {
-    return '';
-  }
+  const { columns, data = [] } = opts;
+  if (!columns) { return ''; }
 
+  if (!data.length) {
+    return emptyTable(columns);
+  }
   return `<tbody class="table-group-divider">
     ${data.map((d) => `
         <tr>${columns
     .map((column) => {
-      const { css = '', field } = column;
-      const value = d[field];
+      const { css = '', field, template } = column;
+      const value = template ? template(d) : d[field];
       return `<td class="${css}">${value || ''}</td>`;
     })
     .join('')}
@@ -97,7 +112,7 @@ const pageNotFound = () => `
     <p class="text-gray-500 mb-0">Parece que has encontrado un fallo en la matrix...</p>
     <a href="/inicio" data-navigo>Inicio</a>
   </div>
-  `;
+`;
 
 export default {
   doOptions,
