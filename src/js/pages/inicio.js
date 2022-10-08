@@ -1,6 +1,7 @@
+/* eslint-disable class-methods-use-this */
 import { Chart, BarElement, BarController } from 'chart.js';
-// import utils from './utils';
-import ui from './ui';
+
+import ui from '../ui';
 
 Chart.register(BarElement, BarController);
 class Inicio {

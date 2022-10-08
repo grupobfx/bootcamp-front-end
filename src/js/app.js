@@ -6,8 +6,12 @@ import menu from './menu';
 import storage from './storage';
 import ui from './ui';
 import http from './http';
+import api from './api';
 
-import Inicio from './inicio';
+import Inicio from './pages/inicio';
+import Cuentas from './pages/cuentas';
+import Categorias from './pages/categorias';
+import Usuarios from './pages/usuarios';
 
 class Upnify {
   constructor() {
@@ -15,6 +19,8 @@ class Upnify {
   }
 
   tkSesion = null;
+
+  userInfo = {};
 
   $container = null;
 
@@ -34,14 +40,37 @@ class Upnify {
       return false;
     }
 
-    // storage.set('tkSesion', 'P02NjExRDI5MDItNkQxOC00REZGLUJFMTItRTMyNDVBMzUwMEQ0');
-    await this.app();
-    return true;
+    try {
+      const res = await http.doHttp({
+        method: 'POST',
+        url: api.auth.login,
+        payload: values,
+        includeSesion: false,
+      });
+      const { token, ...userInfo } = res;
+
+      storage.set('token', token);
+      storage.set('userInfo', userInfo);
+      this.userInfo = userInfo;
+
+      await this.app();
+      return true;
+    } catch (error) {
+      const $floatingPassword = document.querySelector('#floatingPassword');
+      $floatingPassword.classList.add('is-invalid');
+      $floatingPassword.focus();
+      const $loginFeedback = document.querySelector('#login-feedback');
+      $loginFeedback.innerHTML = error.msg;
+      return false;
+    }
   };
 
   app = async () => {
+    const { nombre, apellidos, correo } = this.userInfo;
     const html = await http.doHttp({ url: settings.recursos.app, json: false });
     this.baseHtml(html);
+    const $userName = document.querySelector('#user-name');
+    $userName.innerHTML = `<p class="m-0">${nombre} ${apellidos}</p><p class="m-0 small"><span class="small">${correo}</span></p>`;
     menu.init();
     this.setRoutes();
   };
@@ -60,13 +89,15 @@ class Upnify {
 
   router;
 
-  // inicio = new Inicio();
-
   routes = {
     '/': Inicio.init,
     '/login': this.login,
-    '/inicio': Inicio.init,
     '/salir': this.logout,
+    '/inicio': Inicio.init,
+    '/cuentas/:id/:cuenta': Cuentas.detalle,
+    '/cuentas': Cuentas.init,
+    '/categorias': Categorias.init,
+    '/usuarios': Usuarios.init,
   };
 
   setRoutes = () => {
@@ -77,12 +108,15 @@ class Upnify {
       ui.pageContent({ title: '404', body: ui.pageNotFound() });
     });
     this.router.resolve();
+    window.appRouter = this.router;
   };
 
   init = async () => {
-    this.tkSesion = storage.get('tkSesion');
+    this.token = storage.get('token');
     this.baseHtml();
-    if (this.tkSesion) {
+    if (this.token) {
+      const userInfo = storage.get('userInfo');
+      this.userInfo = userInfo;
       await this.app();
     } else {
       await this.login();
