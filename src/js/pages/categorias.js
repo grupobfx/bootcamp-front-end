@@ -21,7 +21,6 @@ class Categorias {
       {
         title: 'Categoria',
         field: 'categoria',
-        template: (d) => (`<a href="/cuentas/${d.id}/${d.cuenta}" data-navigo>${d.cuenta}</a>`),
       },
     ];
 

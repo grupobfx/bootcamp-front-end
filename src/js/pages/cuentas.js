@@ -66,6 +66,11 @@ class Cuentas {
         field: 'abono',
         css: 'text-end',
       },
+      {
+        title: 'Saldo',
+        field: 'saldo',
+        css: 'text-end',
+      },
     ];
 
     $cardBody.innerHTML = ui.buildTable({ data, columns });
