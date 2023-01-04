@@ -114,14 +114,18 @@ class Upnify {
   init = async () => {
     this.token = storage.get('token');
     this.baseHtml();
-    if (this.token) {
-      const userInfo = storage.get('userInfo');
-      this.userInfo = userInfo;
-      await this.app();
-    } else {
-      await this.login();
-      window.history.replaceState({}, '', '/');
-    }
+
+    const userInfo = storage.get('userInfo');
+    this.userInfo = userInfo;
+    await this.app();
+    // if (this.token) {
+    //   const userInfo = storage.get('userInfo');
+    //   this.userInfo = userInfo;
+    //   await this.app();
+    // } else {
+    //   await this.login();
+    //   window.history.replaceState({}, '', '/');
+    // }
   };
 }
 

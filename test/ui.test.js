@@ -28,6 +28,17 @@ test('doOptions', () => {
       option: 'opcion',
       html: '<option value="ABC">Primera</option>',
     },
+    {
+      data: [
+        {
+          tkOpcion: 'ABCD',
+          opcion: 'Primera',
+        },
+      ],
+      value: 'tkOpcion',
+      option: 'opcion',
+      html: '<option value="ABCD">Primera</option>',
+    },
   ];
 
   arrTest.forEach((test) => {
