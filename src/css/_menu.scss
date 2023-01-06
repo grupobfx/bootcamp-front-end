@@ -14,7 +14,7 @@
 }
 
 #wrapper.toggled {
-  padding-left: 250px;
+  // padding-left: 250px;
   overflow: hidden;
 }
 
@@ -123,7 +123,7 @@
 
 @media (min-width: 768px) {
   #wrapper {
-     padding-left: 250px;
+    //  padding-left: 250px;
   }
   .fixed-brand {
      width: 250px;
@@ -139,10 +139,11 @@
   }
   #wrapper.toggled-2 #sidebar-wrapper {
      width: 50px;
+     overflow: hidden;
   }
-  #wrapper.toggled-2 #sidebar-wrapper:hover {
-     width: 250px;
-  }
+  // #wrapper.toggled-2 #sidebar-wrapper:hover {
+  //    width: 250px;
+  // }
   #page-content-wrapper {
      padding: 80px 15px 15px 15px;
      position: relative;
